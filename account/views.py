@@ -26,8 +26,12 @@ class AuthUserLoginView(APIView):
                 'success': True,
                 'statusCode': status_code,
                 'message': 'User logged in successfully',
-                'email': serializer.data['email'],
-                'role': serializer.data['role']
+                'access': serializer.data['access'],
+                'refresh': serializer.data['refresh'],
+                'authenticatedUser': {
+                    'email': serializer.data['email'],
+                    'role': serializer.data['role']
+                }
             }
 
             return Response(response, status=status_code)

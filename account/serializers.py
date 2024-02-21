@@ -1,7 +1,8 @@
 from rest_framework import serializers
 from .models import User
 from django.contrib.auth import authenticate
-
+from rest_framework_simplejwt.tokens import RefreshToken
+from django.contrib.auth.models import update_last_login
 
 class UserSerializers(serializers.ModelSerializer):
     class Meta:
@@ -23,6 +24,8 @@ class UserSerializers(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
     password = serializers.CharField(max_length=128, write_only=True)
+    access = serializers.CharField(read_only=True)
+    refresh = serializers.CharField(read_only=True)
     role = serializers.CharField(read_only=True)
 
     def validate(self, data):
@@ -34,8 +37,14 @@ class UserLoginSerializer(serializers.Serializer):
             raise serializers.ValidationError("Invalid login credentials")
 
         try:
-         
+            refresh = RefreshToken.for_user(user)
+            refresh_token = str(refresh)
+            access_token = str(refresh.access_token)
+
+            update_last_login(None, user)
             validation = {
+                'access': access_token,
+                'refresh': refresh_token,
                 'email': user.email,
                 "password": user.password,
                 'role': user.role,
