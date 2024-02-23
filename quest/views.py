@@ -40,3 +40,40 @@ class QuestRetrieveUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
         quest.activity.add(*selected_activity )
         
         return Response(QuestSerializer(quest).data)
+    
+class QuestDetail(generics.RetrieveAPIView):
+    queryset = Quest.objects.all()
+    serializer_class = QuestSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+
+        # Get associated tasks and activities data
+        tasks_data = TaskSerializer(instance.tasks.all(), many=True).data
+        activity_data = ActivitySerializer(instance.activity.all(), many=True).data
+
+        # Add associated tasks and activities data to the response
+        response_data = serializer.data
+        response_data['tasks'] = tasks_data
+        response_data['activity'] = activity_data
+
+        return Response(response_data) 
+class QuestListWithDetails(generics.ListAPIView):
+    queryset = Quest.objects.all()
+    serializer_class = QuestSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+
+        quest_data_with_details = []
+        for quest in queryset:
+            serializer = self.get_serializer(quest)
+            quest_data = serializer.data
+            tasks_data = TaskSerializer(quest.tasks.all(), many=True).data
+            activity_data = ActivitySerializer(quest.activity.all(), many=True).data
+            quest_data['tasks'] = tasks_data
+            quest_data['activity'] = activity_data
+            quest_data_with_details.append(quest_data)
+
+        return Response(quest_data_with_details)

@@ -30,7 +30,7 @@ class Task(models.Model):
 
 class Activity(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    uuser = models.CharField(max_length=100) # Adjust User model name
+    user = models.CharField(max_length=100) # Adjust User model name
     image = models.ImageField(upload_to='post_images')
     description = models.TextField()
 
@@ -58,4 +58,4 @@ class Activity(models.Model):
 class Quest(models.Model):
     quest_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     tasks = models.ManyToManyField(Task)
-    tasks = models.ManyToManyField(Activity)
+    activity = models.ManyToManyField(Activity)
