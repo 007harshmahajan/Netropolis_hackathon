@@ -2,5 +2,13 @@ venv/
 db.sqlite3
 post_images
 **/migrations
-__pycache__/
+**/__pycache__
 .pytest_cache
+.DS_Store
+.vscode/*
+.idea
+db.sqlite3
+.venv
+venv
+.env
+.vscode
