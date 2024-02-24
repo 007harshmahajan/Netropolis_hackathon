@@ -1,3 +1,6 @@
 venv/
 db.sqlite3
-post_image
+post_images
+**/migrations
+__pycache__/
+.pytest_cache
