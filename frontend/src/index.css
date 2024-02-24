@@ -1,3 +1,101 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* Custom Scrollbar */
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+    margin: 8px 0;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 8px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #e4e4e7;
+    border-radius: 8px;
+    border: 4px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+}
+
+@layer components {
+  /* buttons */
+  .btn-primary {
+    @apply bg-primary-20  px-3 py-[10px] rounded-xl flex justify-center items-center gap-1 text-neutral-100 prose-b2-semibold enabled:shadow-xsm enabled:hover:bg-primary-10 enabled:focus:ring-2 enabled:focus:ring-offset-2 enabled:focus:ring-primary-70 disabled:bg-neutral-80 disabled:text-neutral-50;
+  }
+
+  .btn-primary-loading {
+    @apply bg-primary-20 px-3 py-[10px] rounded-xl flex justify-center items-center gap-1 text-neutral-100 prose-b2-semibold shadow-xsm opacity-60 cursor-default;
+  }
+
+  .btn-secondary {
+    @apply bg-neutral-100  px-3 py-[10px] rounded-xl flex justify-center items-center gap-1 text-neutral-5 prose-b2-semibold border border-neutral-70 enabled:hover:bg-neutral-90 enabled:shadow-xsm enabled:focus:ring-2 enabled:focus:ring-offset-2 enabled:focus:ring-neutral-80 disabled:text-neutral-50 disabled:bg-neutral-80;
+  }
+
+  .btn-secondary-loading {
+    @apply bg-neutral-100 px-3 py-[10px] rounded-xl flex justify-center items-center gap-1 text-neutral-5 prose-b2-semibold border border-neutral-70 shadow-xsm opacity-60 cursor-default;
+  }
+
+  .btn-tertiary {
+    @apply bg-neutral-100 px-3 py-[10px] rounded-xl flex justify-center items-center gap-1 text-primary-20 prose-b2-semibold border border-primary-70 enabled:hover:bg-primary-100 enabled:hover:border-primary-60 enabled:shadow-xsm enabled:focus:ring-2 enabled:focus:ring-offset-2 enabled:focus:ring-primary-70 disabled:text-neutral-50 disabled:border-none;
+  }
+
+  .btn-tertiary-loading {
+    @apply bg-neutral-100 px-3 py-[10px] rounded-xl flex justify-center items-center gap-1 text-primary-20 prose-b2-semibold border border-primary-70 shadow-xsm opacity-60 cursor-default;
+  }
+
+  /* api status */
+  .api-status-live {
+    @apply px-2 py-[2px] rounded-full flex items-center gap-[6px] bg-primary-80 text-primary-10 text-[13px] font-medium;
+  }
+
+  .api-status-blocked {
+    @apply px-2 py-[2px] rounded-full flex items-center gap-[6px] bg-neutral-80 text-neutral-10 text-[13px] font-medium;
+  }
+
+  .api-status-suspended {
+    @apply px-2 py-[2px] rounded-full flex items-center gap-[6px] bg-error-80 text-error-10 text-[13px] font-medium;
+  }
+
+  /* Dropdown menu */
+  .dropdown-menu {
+    @apply w-full flex items-center gap-1 py-2.5 px-3 prose-b2-medium bg-neutral-100 placeholder:text-neutral-40 text-neutral-5 border border-neutral-70 rounded-xl enabled:shadow-xsm enabled:hover:bg-neutral-80 enabled:focus:ring-2 enabled:focus:ring-offset-2 enabled:focus:ring-neutral-80 disabled:opacity-60 outline-none;
+  }
+
+  /* Table Status */
+  .table-status {
+    @apply pl-1 pr-2 py-0.5 rounded-[100px] w-fit flex items-center gap-1 bg-primary-100 prose-c1-medium border border-neutral-70;
+  }
+
+  .radio-button {
+    @apply relative size-[1.125rem] appearance-none rounded-full enabled:border-[3px] drop-shadow-radio enabled:border-neutral-70 enabled:hover:border-neutral-60 before:pointer-events-none enabled:checked:border-none enabled:checked:bg-primary-30 enabled:checked:hover:bg-primary-20 checked:after:absolute checked:after:left-1/2 checked:after:top-1/2 checked:after:size-2 checked:after:rounded-full checked:after:bg-neutral-100 checked:after:[transform:translate(-50%,-50%)] hover:cursor-pointer checked:shadow-[inset_0_2px_2px_0_rgba(0,0,0,0.24)] disabled:bg-neutral-60  disabled:shadow-[inset_0_2px_2px_0_rgba(0,0,0,0.24)] disabled:cursor-default;
+  }
+  .checkbox-button {
+    @apply relative size-[1.125rem] appearance-none rounded-[4px] enabled:border-[3px] drop-shadow-radio enabled:border-neutral-70 enabled:hover:border-neutral-60 before:pointer-events-none enabled:checked:border-none enabled:checked:bg-primary-30 enabled:checked:hover:bg-primary-20 hover:cursor-pointer checked:shadow-[inset_0_2px_2px_0_rgba(0,0,0,0.24)] disabled:bg-neutral-60  disabled:shadow-[inset_0_2px_2px_0_rgba(0,0,0,0.24)] disabled:cursor-default;
+  }
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
