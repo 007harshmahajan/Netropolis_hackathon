@@ -13,7 +13,7 @@ class UserList(generics.ListCreateAPIView):
 
 class AuthUserLoginView(APIView):
     serializer_class = UserLoginSerializer
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -30,7 +30,9 @@ class AuthUserLoginView(APIView):
                 'refresh': serializer.data['refresh'],
                 'authenticatedUser': {
                     'email': serializer.data['email'],
-                    'role': serializer.data['role']
+                    'role': serializer.data['role'],
+                    'first_name': serializer.data['first_name'],
+                    'last_name': serializer.data['last_name'],
                 }
             }
 
