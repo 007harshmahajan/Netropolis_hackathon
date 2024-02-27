@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 
 class Task(models.Model):
+    
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     user = models.CharField(max_length=100)  # Adjust User model name
     image = models.ImageField(upload_to='post_images')
@@ -55,7 +56,15 @@ class Activity(models.Model):
     def __str__(self):
         return f"Task {self.id} - {self.description}"
     
+class Category(models.Model):
+    name = models.CharField(max_length=50)
+    description = models.TextField(blank=True) 
+    
 class Quest(models.Model):
     quest_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     tasks = models.ManyToManyField(Task)
     activity = models.ManyToManyField(Activity)
+    user_resgistered = models.CharField(max_length=100)
+    categories = models.ManyToManyField(Category)
+    
+    

@@ -7,14 +7,15 @@ from django.contrib.auth.models import update_last_login
 class UserSerializers(serializers.ModelSerializer):
     class Meta:
         model=User
-        fields=["email","first_name", "last_name","password" ,"username", "role"]
+        fields=["email","first_name", "last_name","password" ,"username", "role",'phone_number']
     def create(self, validated_data):
         user = User(
             email=validated_data['email'],
             username=validated_data['username'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
-            role=validated_data['role']
+            role=validated_data['role'],
+            phone_number=validated_data['phone_number']
         )
         user.set_password(validated_data['password'])
         user.save()

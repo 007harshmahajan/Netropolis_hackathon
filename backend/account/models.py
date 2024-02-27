@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils import timezone
+from django.core.validators import RegexValidator
 
 from .managers import CustomUserManager
 
@@ -27,6 +28,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     # Roles created here
     uid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4, verbose_name='Public identifier')
+    phone_regex = RegexValidator(regex=r'^(\+81)?\d{10}$', message="Invalid phone number")
+    phone_number = models.CharField(max_length=13, validators=[phone_regex])
+
     username = models.CharField(max_length=40, unique=True)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30, blank=False)
@@ -35,7 +39,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=True)
-    is_communitymanager = models.BooleanField(default=True)
+    is_communitymanager = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=True)
     is_deleted = models.BooleanField(default=False)
     created_date = models.DateTimeField(default=timezone.now)
