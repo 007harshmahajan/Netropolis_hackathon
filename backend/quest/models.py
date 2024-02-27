@@ -4,6 +4,7 @@ import uuid
 class Task(models.Model):
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    title = models.CharField(max_length=100)
     user = models.CharField(max_length=100)  # Adjust User model name
     image = models.ImageField(upload_to='post_images')
     description = models.TextField()
@@ -31,6 +32,7 @@ class Task(models.Model):
 
 class Activity(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    title = models.CharField(max_length=100)
     user = models.CharField(max_length=100) # Adjust User model name
     image = models.ImageField(upload_to='post_images')
     description = models.TextField()
@@ -62,6 +64,7 @@ class Category(models.Model):
     
 class Quest(models.Model):
     quest_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    title = models.CharField(max_length=100)
     tasks = models.ManyToManyField(Task)
     activity = models.ManyToManyField(Activity)
     user_resgistered = models.CharField(max_length=100)
