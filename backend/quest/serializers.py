@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from .models import Task, Quest,Activity
-
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
         fields = '__all__'
+
 
 class ActivitySerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,5 +29,4 @@ class QuestSerializer(serializers.ModelSerializer):
             quest.tasks.add(task_data)
         for activity_data in activity_data:
             quest.activity.add(activity_data)
-        
         return quest
