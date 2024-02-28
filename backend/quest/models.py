@@ -7,7 +7,7 @@ class Task(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     title = models.CharField(max_length=100)
     user = models.CharField(max_length=100)  # Adjust User model name
-    image = models.ImageField(upload_to='post_images')
+    image = models.TextField()
     description = models.TextField()
 
     # Reward system details
@@ -35,7 +35,7 @@ class Activity(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     title = models.CharField(max_length=100)
     user = models.CharField(max_length=100) # Adjust User model name
-    image = models.ImageField(upload_to='post_images')
+    image = models.TextField()
     description = models.TextField()
 
     # Reward system details
