@@ -30,7 +30,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     uid = models.UUIDField(unique=True, editable=False, default=uuid.uuid4, verbose_name='Public identifier')
     phone_regex = RegexValidator(regex=r'^(\+81)?\d{10}$', message="Invalid phone number")
     phone_number = models.CharField(max_length=13, validators=[phone_regex])
-
+    profile_image = models.ImageField(upload_to='post_images')
     username = models.CharField(max_length=40, unique=True)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=30, blank=False)
@@ -44,7 +44,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_deleted = models.BooleanField(default=False)
     created_date = models.DateTimeField(default=timezone.now)
     modified_date = models.DateTimeField(default=timezone.now)
-
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
