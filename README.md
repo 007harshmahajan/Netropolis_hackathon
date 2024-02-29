@@ -2,11 +2,13 @@
 
 ## frontend_installation
 ~~~
+cd frontend
 npm i 
 nmp run dev
 ~~~
 ## backend_installation
 ~~~
+cd backend
 run.sh
 ~~~
 
