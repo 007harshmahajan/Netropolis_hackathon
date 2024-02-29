@@ -68,11 +68,11 @@ export function Header() {
             <IconLabelButton
               label="Sign In"
               className="whitespace-nowrap"
+              variant="secondary"
               onClick={() => navigate("/auth/login")}
             />
             <IconLabelButton
               label="Sign Up"
-              variant="tertiary"
               className="whitespace-nowrap"
               onClick={() => navigate("/auth/register")}
             />
