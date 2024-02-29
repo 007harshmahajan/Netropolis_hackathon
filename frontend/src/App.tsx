@@ -5,6 +5,7 @@ import Tasks from "./modules/tasks";
 import PageNotFound from "./modules/page-not-found";
 import Auth from "./modules/auth";
 import Home from "./modules/pages/home";
+import RegisterQuest from "./modules/quests/register-quest";
 import QuestListing from "./modules/quest-list/listing";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="activity" element={<Activity />} />
           <Route path="tasks" element={<Tasks />} />
+          <Route path="create-quest" element={<RegisterQuest />} />
           <Route path="*" Component={PageNotFound} />
           <Route path="quest" element={<QuestListing/>} />
         </Route>
