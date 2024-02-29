@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'account.apps.AccountConfig',
     'quest.apps.QuestConfig',
     'rest_framework',
-     'corsheaders'
+    'corsheaders',
+    'search.apps.SearchConfig'
 ]
 
 MIDDLEWARE = [
